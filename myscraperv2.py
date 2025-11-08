@@ -23,6 +23,12 @@ else:
 if not table:
     raise SystemExit("❌ Premier League table not found!")
 
+season_links = []
+for link in soup.select('a[href*="/Premier-league-stats/"]'):  # adjust selector
+    href = link['href']
+    print(href)
+    full_url = f"https://example.com{href}" if href.startswith('/') else href
+
 # STEP 2: Extract data from the table
 rows = []
 tbody = table.find('tbody')
