@@ -49,6 +49,7 @@ for tr in tbody.find_all('tr'):
     ga = tr.find('td', {'data-stat': 'goals_against'}).text.strip() if tr.find('td', {'data-stat': 'goals_against'}) else ""
     gd = tr.find('td', {'data-stat': 'goal_diff'}).text.strip() if tr.find('td', {'data-stat': 'goal_diff'}) else ""
     points = tr.find('td', {'data-stat': 'points'}).text.strip() if tr.find('td', {'data-stat': 'points'}) else ""
+    points_avg = tr.find('td', {'data-stat': 'points_avg'}).text.strip() if tr.find('td', {'data-stat': 'points_avg'}) else ""
     
     rows.append({
         "rank": rank,
@@ -60,12 +61,13 @@ for tr in tbody.find_all('tr'):
         "gf": gf,
         "ga": ga,
         "gd": gd,
-        "points": points
+        "points": points,
+        "points_avg":points_avg
     })
 
 # STEP 3: Save to CSV
 with open("pl_table.csv", "w", newline="", encoding="utf-8") as f:
-    fieldnames = ["rank", "team", "played", "wins", "draws", "losses", "gf", "ga", "gd", "points"]
+    fieldnames = ["rank", "team", "played", "wins", "draws", "losses", "gf", "ga", "gd", "points","points_avg"]
     writer = csv.DictWriter(f, fieldnames=fieldnames)
     writer.writeheader()
     writer.writerows(rows)
