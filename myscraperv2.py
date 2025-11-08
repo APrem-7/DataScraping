@@ -3,9 +3,9 @@ import cloudscraper
 from bs4 import BeautifulSoup
 import csv
 
-url = "https://fbref.com/en/comps/9/2023-2024/2023-2024-Premier-League-Stats"
 scraper = cloudscraper.create_scraper()
-resp = scraper.get(url)
+main_url = "https://fbref.com/en/comps/9/history/Premier-League-Seasons"
+resp = scraper.get(main_url)
 print(f"Status Code: {resp.status_code}")
 
 soup = BeautifulSoup(resp.text, "html.parser")
@@ -13,7 +13,7 @@ soup = BeautifulSoup(resp.text, "html.parser")
 # STEP 1: Find the table DIRECTLY (not inside comments)
 # We can find it by:
 # 1. Looking for a table with a caption "Premier League Table"
-caption = soup.find('caption', string='Premier League Table')
+caption = soup.find('caption', string='Premier League Seasons Table')
 if caption:
     table = caption.find_parent('table')
 else:
