@@ -2,6 +2,9 @@
 import cloudscraper
 from bs4 import BeautifulSoup
 import csv
+import time 
+import random
+
 
 scraper = cloudscraper.create_scraper()
 main_url = "https://fbref.com/en/comps/9/history/Premier-League-Seasons"
