@@ -30,9 +30,9 @@ for link in soup.select('a[href*="Premier-League-Stats"]'):
 
     full_url = f"https://fbref.com{href}" if href.startswith('/') else href
     season_links.append(full_url)
-
+season_scraper=cloudscraper.create_scraper()
 for link in season_links:
-    season_scraper=cloudscraper.create_scraper()
+
     season_url=link
     resp=scraper.get(link)
     print(f"Status Code: {resp.status_code}")
@@ -103,5 +103,7 @@ for link in season_links:
          writer.writerows(rows)
 
     print(f"✅ Successfully saved {len(rows)} teams to pl_tableGG.csv")
+
+    time.sleep(random.uniform(1.5, 3.5))   # polite gap 
 
 
